@@ -11,7 +11,3 @@ exclude = [
 show-source = true
 statistics = true
 count = true
-format = pylint
-
-
-
