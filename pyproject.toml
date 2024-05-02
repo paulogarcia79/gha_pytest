@@ -1,10 +1,8 @@
 [tool.ruff]
-extend-select = []
-line-length = 120
-ignore= []
-show-fixes = true
-exclude = [
-    ".git",
-    "__pycache__",
-    "venv/*",
-]
+line-length = 100
+
+[tool.ruff.lint.isort]
+known-local-folder = ["api", "db", "schemas", "controllers"]
+
+[tool.pytest.ini_options]
+addopts = "-n 12"
