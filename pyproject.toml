@@ -5,4 +5,4 @@ line-length = 100
 known-local-folder = ["api", "db", "schemas", "controllers"]
 
 [tool.pytest.ini_options]
-addopts = "-n 12"
+addopts = "-vv"
