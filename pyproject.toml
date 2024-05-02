@@ -1,0 +1,17 @@
+[tool.ruff]
+extend-select = []
+line-length = 120
+ignore= []
+show-fixes = true
+exclude = [
+    ".git",
+    "__pycache__",
+    "venv/*",
+]
+show-source = true
+statistics = true
+count = true
+format = pylint
+
+
+
