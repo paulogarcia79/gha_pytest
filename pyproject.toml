@@ -8,6 +8,3 @@ exclude = [
     "__pycache__",
     "venv/*",
 ]
-show-source = true
-statistics = true
-count = true
