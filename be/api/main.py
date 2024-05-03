@@ -2,8 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
-    title="Bootsrap API",
-    description="Bootstrap API for FastAPI",
+    title="Github Actions Sample API",
+    description="This is a sample API for Github Actions",
     version="0.1.0",
     dependencies=[],
 )
