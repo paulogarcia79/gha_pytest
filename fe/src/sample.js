@@ -1,1 +1,1 @@
-const cat = 345
+// fe/sample.js
