@@ -1,9 +1,17 @@
 name: Continuous Integration - Backend
-run-name: CI - BACKEND - Lint and Tests
+run-name: CI - BACKEND - Lint and Test
 on:
   push:
+    branches:
+      - main
+    paths:
+      - "be/**"
   pull_request:
-
+    branches:
+      - main
+    paths:
+      - "be/**"
+  workflow_dispatch:
 jobs:
   lint-backend:
     strategy:

@@ -1,12 +1,16 @@
 name: Continuous Integration - Frontend
-run-name: CI - FRONTEND - Lint, Build and Tests
+run-name: CI - FRONTEND - Lint, Build and Test
 on:
   push:
     branches:
       - main
+    paths:
+      - "fe/**"
   pull_request:
     branches:
       - main
+    paths:
+      - "fe/**"
   workflow_dispatch:
 jobs:
   lint-frontend:
