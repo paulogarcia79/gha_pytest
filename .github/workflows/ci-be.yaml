@@ -1,5 +1,5 @@
-name: Continuous Integration
-run-name: CI
+name: Continuous Integration - Backend
+run-name: CI - BACKEND - Lint and Tests
 on:
   push:
   pull_request:
