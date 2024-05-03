@@ -1,0 +1,29 @@
+# Combinaciñon de eslint y prettier
+name: Lint Frontend
+run-name: Lint Frontend
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@main
+      - name: Install Node.js
+        uses: actions/setup-node@main
+        with:
+          node-version: lts/*
+      - name: Install dependencies
+        run: |
+          cd fe
+          npm ci
+      - name: Lint with ESLint and Prettier
+        run: |
+          cd fe
+          npx eslint .
