@@ -68,3 +68,4 @@ jobs:
           name: playwright-report ${{ github.run_number }}-${{ github.run_attempt }}
           path: fe/playwright-report/
           retention-days: 30
+          overwrite: true
