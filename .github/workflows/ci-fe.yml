@@ -64,3 +64,4 @@ jobs:
           name: playwright-report
           path: fe/playwright-report/
           retention-days: 30
+          overwrite: true
