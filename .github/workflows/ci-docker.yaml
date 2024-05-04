@@ -31,4 +31,4 @@ jobs:
       - name: Build and Push Docker Images
         run: |
           docker compose -f docker-compose.yml --env-file base.env --profile gha build
-          docker compose -f docker-compose.yml push
+          docker compose -f docker-compose.yml --env-file base.env --profile gha push
