@@ -15,5 +15,5 @@ docker compose --env-file .env --profile gha up -d
 
 ### Remove containers, images, and volumes
 ```
-docker compose --profile bootstrap down --volumes --rmi all -t 0
+docker compose --profile gha down --volumes --rmi all -t 0
 ```
