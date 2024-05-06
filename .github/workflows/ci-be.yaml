@@ -1,4 +1,4 @@
-name: Continuous Integration - Backend
+name: CI - Backend
 run-name: CI - BACKEND - Lint and Test
 on:
   push:

@@ -1,4 +1,4 @@
-name: Continuous Integration - Build and Publish Docker Images
+name: CI - Build and Publish Docker Images
 run-name: CI - Build and Publish Docker Images
 
 on:
