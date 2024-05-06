@@ -49,6 +49,21 @@ services:
     profiles:
       - gha
 
+  fe:
+      restart: always
+      build:
+        context: ./
+        dockerfile: ./fe/Dockerfile
+        args:
+          - VITE_API_URL=${VITE_API_URL}
+      ports:
+      - mode: host
+        target: 80 # Container port
+        published: 8005 # Host port
+      profiles:
+        - gha
+
+
 volumes:
   db_data:
     driver: local
