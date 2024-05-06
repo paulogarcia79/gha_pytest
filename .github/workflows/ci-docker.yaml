@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - "docker**"
-      - "Dockerfile"
+      - "**/Dockerfile"
   pull_request:
   workflow_dispatch:
 
