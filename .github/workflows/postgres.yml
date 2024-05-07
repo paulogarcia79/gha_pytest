@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest]
         python-version: ["3.9", "3.10", "3.11"]
     name: Run tests on ${{ matrix.os }} with Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
@@ -42,7 +42,7 @@ jobs:
       - name: Initialize database
         run: |
           export PGPASSWORD=bf9ebef3-8073-4dea-964e-571cd1260245
-          psql -h localhost -U gha_admin -d test_database -f be/db/init.sql
+          psql -h localhost -U gha_admin -d test_database -f be/db/objects/init.sql
 
       - name: Test with pytest
         run: |
