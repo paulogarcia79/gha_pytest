@@ -39,16 +39,10 @@ jobs:
           pip install -r requirements.txt
           pip install python-dotenv
 
-      - name: Print env vars
-        run: |
-          echo ${{ env.DB_USERNAME }}
-          echo ${{ env.DB_NAME }}
-          echo ${{ secrets.DB_PASSWORD }}
-
       - name: Initialize database
         run: |
-          export PGPASSWORD=${{ env.DB_PASSWORD }}
-          psql -h localhost -U ${{ env.DB_USERNAME }} -d ${{ env.DB_NAME }} -f be/db/objects/init.sql
+          export PGPASSWORD=${{ secrets.DB_PASSWORD }}
+          psql -h localhost -U ${{ vars.DB_USERNAME }} -d ${{ vars.DB_NAME }} -f be/db/objects/init.sql
 
       - name: Test with pytest
         run: |
