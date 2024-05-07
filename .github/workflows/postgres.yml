@@ -2,6 +2,8 @@ name: CI - Test Postgres initialization
 run-name: CI - Test Postgres
 on:
   push:
+    paths:
+      - "be/db/objects/init.sql"
   pull_request:
     branches:
       - releases

@@ -15,5 +15,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Load env vars
+        run: |
+          echo "REGISTRY=ghcr.io" >> $GITHUB_ENV
+          echo "IMAGE_NAME=${{ github.repository }}" >> $GITHUB_ENV
+
       - name: Debug
         run: env
