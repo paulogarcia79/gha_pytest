@@ -2,11 +2,7 @@ name: CI - Test Postgres initialization
 run-name: CI - Test Postgres
 on:
   push:
-    paths:
-      - "be/db/objects/init.sql"
   pull_request:
-    branches:
-      - releases
   workflow_dispatch:
 jobs:
   run-tests-backend:
@@ -49,11 +45,11 @@ jobs:
           echo ${{ env.DB_NAME }}
           echo ${{ secrets.DB_PASSWORD }}
 
-        #   - name: Initialize database
-    #     run: |
-    #       export PGPASSWORD=${{ env.DB_PASSWORD }}
-    #       psql -h localhost -U ${{ env.DB_USERNAME }} -d ${{ env.DB_NAME }} -f be/db/objects/init.sql
+      - name: Initialize database
+        run: |
+          export PGPASSWORD=${{ env.DB_PASSWORD }}
+          psql -h localhost -U ${{ env.DB_USERNAME }} -d ${{ env.DB_NAME }} -f be/db/objects/init.sql
 
-    #   - name: Test with pytest
-    #     run: |
-    #       pytest
+      - name: Test with pytest
+        run: |
+          pytest
