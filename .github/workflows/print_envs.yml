@@ -17,6 +17,6 @@ jobs:
 
       - name: Print env vars
         run: |
-          echo ${{ env.DB_USERNAME }}
-          echo ${{ env.DB_NAME }}
+          echo ${{ vars.DB_USERNAME }}
+          echo ${{ vars.DB_NAME }}
           echo ${{ secrets.DB_PASSWORD }}
