@@ -15,8 +15,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Print env vars
-        run: |
-          echo ${{ vars.DB_USERNAME }}
-          echo ${{ vars.DB_NAME }}
-          echo ${{ secrets.DB_PASSWORD }}
+      - name: Debug
+        run: env
