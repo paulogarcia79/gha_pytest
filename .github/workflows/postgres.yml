@@ -19,9 +19,9 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: gha_admin
-          POSTGRES_PASSWORD: bf9ebef3-8073-4dea-964e-571cd1260245
-          POSTGRES_DB: gha
+          POSTGRES_USER: ${{ env.DB_USERNAME }}
+          POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          POSTGRES_DB: ${{ env.DB_NAME }}
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -41,21 +41,11 @@ jobs:
           pip install -r requirements.txt
           pip install python-dotenv
 
-      #   - name: Load .env file
-      #     run: |
-      #       python -c "from dotenv import load_dotenv; load_dotenv()"
-      #       echo $DB_USERNAME
-      - name: Load .env file
-        id: dotenv
-        uses: falti/dotenv-action@v0.2.4
-        with:
-          path: .env
-
       - name: Print env vars
         run: |
-          echo ${{ steps.dotenv.outputs.DB_USERNAME }}
-          echo ${{ steps.dotenv.outputs.DB_PASSWORD }}
-          echo ${{ steps.dotenv.outputs.DB_NAME }}
+          echo ${{ env.DB_USERNAME }}
+          echo ${{ env.DB_NAME }}
+          echo ${{ secrets.DB_PASSWORD }}
 
         #   - name: Initialize database
     #     run: |
