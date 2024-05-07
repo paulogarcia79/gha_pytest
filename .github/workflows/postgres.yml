@@ -41,6 +41,7 @@ jobs:
 
       - name: Initialize database
         run: |
+          export PGPASSWORD=bf9ebef3-8073-4dea-964e-571cd1260245
           psql -h localhost -U gha_admin -d test_database -f be/db/init.sql
 
       - name: Test with pytest
