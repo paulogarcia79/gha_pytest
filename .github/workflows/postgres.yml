@@ -15,20 +15,40 @@ jobs:
         python-version: ["3.9", "3.10", "3.11"]
     name: Run tests on ${{ matrix.os }} with Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_USER: gha_admin
-          POSTGRES_PASSWORD: bf9ebef3-8073-4dea-964e-571cd1260245
-          POSTGRES_DB: test_database
-        ports:
-          - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    # services:
+    #   postgres:
+    #     image: postgres:latest
+    #     env:
+    #       POSTGRES_USER: gha_admin
+    #       POSTGRES_PASSWORD: bf9ebef3-8073-4dea-964e-571cd1260245
+    #       POSTGRES_DB: test_database
+    #     ports:
+    #       - 5432:5432
+    #     options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Load .env file
+        uses: falti/dotenv-action@v0.2.4
+        with:
+          path: .env
+
+      - name: Set up PostgreSQL service container
+        uses: docker://postgres:latest
+        with:
+          env:
+            POSTGRES_USER: ${{ env.POSTGRES_USER }}
+            POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+            POSTGRES_DB: ${{ env.POSTGRES_DB }}
+          options: --health-cmd pg_isready
+            --health-interval 10s
+            --health-timeout 5s
+            --health-retries 5
+          ports:
+            - 5432:5432
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
@@ -41,8 +61,8 @@ jobs:
 
       - name: Initialize database
         run: |
-          export PGPASSWORD=bf9ebef3-8073-4dea-964e-571cd1260245
-          psql -h localhost -U gha_admin -d test_database -f be/db/objects/init.sql
+          export PGPASSWORD=${{ env.POSTGRES_PASSWORD }}
+          psql -h localhost -U ${{ env.POSTGRES_USER }} -d ${{ env.POSTGRES_DB }} -f be/db/objects/init.sql
 
       - name: Test with pytest
         run: |
