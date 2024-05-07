@@ -1,0 +1,48 @@
+name: CI - Test Backend
+run-name: CI - Test BE
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  run-tests-backend:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.9", "3.10", "3.11"]
+    name: Run tests on ${{ matrix.os }} with Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: gha_admin
+          POSTGRES_PASSWORD: bf9ebef3-8073-4dea-964e-571cd1260245
+          POSTGRES_DB: test_database
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          cd be
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Initialize database
+        run: |
+          psql -h localhost -U postgres -c -d test_database -f be/db/init.sql"
+
+      - name: Test with pytest
+        run: |
+          pytest
