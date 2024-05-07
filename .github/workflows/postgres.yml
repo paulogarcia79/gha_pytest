@@ -2,6 +2,8 @@ name: CI - Test Postgres initialization
 run-name: CI - Test Postgres
 on:
   push:
+    paths:
+      - "be/db/objects/init.sql"
   pull_request:
   workflow_dispatch:
 jobs:
@@ -32,12 +34,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+
       - name: Install dependencies
         run: |
           cd be
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install python-dotenv
 
       - name: Initialize database
         run: |
