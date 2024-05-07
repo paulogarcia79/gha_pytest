@@ -14,11 +14,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Load env vars
+      - name: Load .env file
         run: |
-          echo "REGISTRY=ghcr.io" >> $GITHUB_ENV
-          echo "IMAGE_NAME=${{ github.repository }}" >> $GITHUB_ENV
+          python -c "from dotenv import load_dotenv; load_dotenv()"
 
       - name: Debug
         run: env
