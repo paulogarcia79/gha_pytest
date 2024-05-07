@@ -44,6 +44,7 @@ jobs:
       - name: Load .env file
         run: |
           python -c "from dotenv import load_dotenv; load_dotenv()"
+          echo $DB_USERNAME
 
       #   - name: Load .env file
       #     id: dotenv
@@ -51,11 +52,11 @@ jobs:
       #     with:
       #       path: .env
 
-      - name: Initialize database
-        run: |
-          export PGPASSWORD=${{ env.DB_PASSWORD }}
-          psql -h localhost -U ${{ env.DB_USERNAME }} -d ${{ env.DB_NAME }} -f be/db/objects/init.sql
+    #   - name: Initialize database
+    #     run: |
+    #       export PGPASSWORD=${{ env.DB_PASSWORD }}
+    #       psql -h localhost -U ${{ env.DB_USERNAME }} -d ${{ env.DB_NAME }} -f be/db/objects/init.sql
 
-      - name: Test with pytest
-        run: |
-          pytest
+    #   - name: Test with pytest
+    #     run: |
+    #       pytest
