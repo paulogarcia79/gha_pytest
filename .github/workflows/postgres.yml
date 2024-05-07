@@ -41,7 +41,7 @@ jobs:
 
       - name: Initialize database
         run: |
-          psql -h localhost -U postgres -c -d test_database -f be/db/init.sql
+          psql -h localhost -U gha_admin -d test_database -f be/db/init.sql
 
       - name: Test with pytest
         run: |
