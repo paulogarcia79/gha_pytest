@@ -16,5 +16,5 @@ export default [
   eslint.configs.recommended,
   ...eslintPluginVue.configs["flat/essential"],
   eslintPluginPrettierVue,
-  eslintPrettier.configs.recommended,
+  eslintPrettier,
 ]
