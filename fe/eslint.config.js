@@ -1,6 +1,6 @@
 import eslint from '@eslint/js';
 import eslintPrettier from 'eslint-config-prettier';
-import eslintPluginPrettierVue from 'eslint-plugin-prettier-vue/lib/configs';
+import eslintPluginPrettierVue from 'eslint-plugin-prettier-vue/lib';
 import eslintPluginVue from "eslint-plugin-vue";
 import globals from "globals";
 
@@ -15,6 +15,6 @@ export default [
   {languageOptions: { globals: globals.browser }},
   eslint.configs.recommended,
   ...eslintPluginVue.configs["flat/essential"],
-  ...eslintPluginPrettierVue.configs.recommended,
+  eslintPluginPrettierVue,
   eslintPrettier.configs.recommended,
 ]
