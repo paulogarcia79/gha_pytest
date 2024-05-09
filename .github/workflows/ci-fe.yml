@@ -57,10 +57,11 @@ jobs:
           npm ci
           npx playwright install --with-deps
 
-      # - name: Build the app
-      #   run: |
-      #     cd fe
-      #     npm run build
+      - name: Build the app
+        run: |
+          cd fe
+          vite preview --port 5173
+        # npm run build
 
       - name: Run Playwright tests
         run: |
