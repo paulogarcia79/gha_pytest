@@ -61,15 +61,15 @@ jobs:
           cd fe
           npx playwright install --with-deps
 
-      # - name: Build the app
-      #   run: |
-      #     cd fe
-      #     vite preview --port 5173
-      # npm run build
-
       - name: Run Playwright tests
         run: |
           cd fe
           npx playwright test
         env:
           CI: true
+
+      - name: Upload Playwright test results
+        uses: actions/upload-artifact@main
+        with:
+          name: test-results
+          path: fe/reports

@@ -104,9 +104,7 @@ export default defineConfig({
      * Playwright will re-use the local server if there is already a dev-server running.
      */
     command: process.env.CI ? 'npm run dev' : 'vite dev',
-    // command: process.env.CI ? 'vite preview --port 5173' : 'vite dev',
     port: 5173,
     reuseExistingServer: !process.env.CI,
-    timeout: 10 * 1000,
   }
 })
