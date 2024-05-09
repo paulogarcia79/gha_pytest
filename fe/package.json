@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "playwright": "^1.43.1",
-    "vue": "^3.4.21"
+    "vue": "^3.4.21",
+    "vite": "^5.2.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.2.0",
@@ -22,7 +23,6 @@
     "eslint-plugin-prettier-vue": "^5.0.0",
     "eslint-plugin-vue": "^9.25.0",
     "globals": "^15.1.0",
-    "prettier": "^3.1.1",
-    "vite": "^5.2.8"
+    "prettier": "^3.1.1"
   }
 }
